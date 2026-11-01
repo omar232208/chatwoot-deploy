@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: chatwoot
+    env: ruby
+    buildCommand: bundle install && bundle exec rails assets:precompile RAILS_ENV=production
+    startCommand: bundle exec rails db:chatwoot_prepare && bundle exec rails server -p $PORT -e production
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RACK_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://chatwoot.onrender.com
+      - key: INSTALLATION_ENV
+        value: render
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=4096
+    plan: free
+
+databases:
+  - name: chatwoot-db
+    databaseName: chatwoot_production
+    user: chatwoot
+    plan: free
+
+  - name: chatwoot-redis
+    plan: free
