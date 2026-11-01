@@ -31,7 +31,6 @@ services:
 databases:
   - name: chatwoot-db
     databaseName: chatwoot_production
-    user: chatwoot
     plan: free
 
   - name: chatwoot-redis
