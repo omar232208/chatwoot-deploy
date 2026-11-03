@@ -2,7 +2,7 @@ services:
   - type: web
     name: chatwoot
     env: ruby
-    buildCommand: bundle install && bundle exec rails assets:precompile
+    buildCommand: bundle install && pnpm install && bundle exec rails assets:precompile
     startCommand: bundle exec rails db:chatwoot_prepare && bundle exec rails server -p $PORT -e production
     envVars:
       - key: RAILS_ENV
